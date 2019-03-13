@@ -134,8 +134,7 @@
                         msg: $(".msg").val(),
                     }
                     $.post("/home/sendmsg", param, function (r) {
-
-                        if (r.code == 200) {
+                        if (r.response) {
                             layer.close(layer.index);
                             layer.msg('发送成功');
                         } else {
@@ -158,7 +157,7 @@
                         telephone: $(".telephone").val(),
                     }
                     $.post("/home/bindtelephone", param, function (r) {
-                        if (r.code == 200) {
+                        if (r.response) {
                             layer.close(layer.index);
                             layer.msg('绑定成功');
                             $(that).parent().siblings(".telephonetext").html(param.telephone);
@@ -181,7 +180,7 @@
                         remarkName: $(".remarkname").val(),
                     }
                     $.post("/home/setremarkname", param, function (r) {
-                        if (r.code == 200) {
+                        if (r.response) {
                             layer.close(layer.index);
                             layer.msg('设置成功');
                             $(that).parent().siblings(".remarknametext").html(param.remarkName);
@@ -195,24 +194,24 @@
     </script>
 
     <script>
-        function checkStatus() {
-            $.ajax({
-                url: "/Home/CheckStatus",
-                type:'POST',
-                async: true,
-                timeout:60000,
-                success: function (r) {
-                    if (r.code == -2 || !r.response) {
-                        location.href = "/Login/QrCode";
-                    } else {
-                        setTimeout(checkStatus,60000)
-                    }
-                },
-                error: function () { 
-                    location.href = "/Login/QrCode";
-                }
-            })
+        //function checkStatus() {
+        //    $.ajax({
+        //        url: "/Home/CheckStatus",
+        //        type:'POST',
+        //        async: true,
+        //        timeout:60000,
+        //        success: function (r) {
+        //            if (r.code == -2 || !r.response) {
+        //                location.href = "/Login/QrCode";
+        //            } else {
+        //                setTimeout(checkStatus,60000)
+        //            }
+        //        },
+        //        error: function () { 
+        //            location.href = "/Login/QrCode";
+        //        }
+        //    })
 
-        }
+        //}
     </script>
 }

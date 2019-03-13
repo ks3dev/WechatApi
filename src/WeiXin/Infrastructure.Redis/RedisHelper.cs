@@ -1,6 +1,5 @@
 ﻿using Infrastructure.Redis.Config;
 using Infrastructure.Redis.Interface;
-using Microsoft.CodeAnalysis.Options;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using StackExchange.Redis;

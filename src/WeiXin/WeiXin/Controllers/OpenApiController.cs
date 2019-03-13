@@ -12,7 +12,7 @@ namespace WeiXin.Controllers
     public class OpenApiController : Controller
     {
         [HttpPost]
-        public JsonResult SendMsg(JObject webHookParam)
+        public JsonResult SendMsg([FromBody]object webHookParam)
         {
             var paramjson = JsonConvert.SerializeObject(webHookParam);
             LogHelper.Error("接收Param", paramjson);

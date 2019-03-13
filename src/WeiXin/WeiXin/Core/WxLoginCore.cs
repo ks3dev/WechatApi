@@ -1,6 +1,10 @@
-﻿using Infrastructure.WeiXin;
+﻿using Infrastructure.Data;
+using Infrastructure.WeiXin;
+using Infrastructure.WeiXin.Models;
 using Microsoft.AspNetCore.Http;
 using System;
+using System.Threading;
+using System.Timers;
 using WeiXin.Core.Interface;
 using WeiXin.Domain;
 using WeiXin.Domain.DTO;
@@ -63,9 +67,9 @@ namespace WeiXin.Core
             WeiXinHelper.StartWxStatusNotify(hosts, wxCookie, keys, userModel.UserName);
 
             //心跳检测转到前端
-            //Thread thread = new Thread(m => HeartbeatWxStatus(Response, hosts, wxCookie, keys, userInfo.SyncKey));
-            //thread.IsBackground = true;
-            //thread.Start();
+            Thread thread = new Thread(m => HeartbeatWxStatus(Response, hosts, wxCookie, keys, userInfo.SyncKey));
+            thread.IsBackground = true;
+            thread.Start();
 
             //添加缓存
             AuthCore.SetUin(Response, userModel.Uin);
@@ -77,32 +81,33 @@ namespace WeiXin.Core
         }
 
         #region 心跳检测微信状态
-        ///// <summary>
-        ///// 心跳检测微信状态
-        ///// </summary>
-        //public static void HeartbeatWxStatus(HttpResponse httpResponse,string wxHosts, string wxCookie, PassTicketXmlInfo keys, SyncKey syncKey)
-        //{
-        //    System.Timers.Timer timer = new System.Timers.Timer(60000);
-        //    timer.Elapsed += new ElapsedEventHandler((o,e)=> Loginout(o,e, httpResponse));//登录超时
-        //    timer.Enabled = true;
-        //    timer.Start();
-        //    var status=WeiXinHelper.GetWxStatus(wxHosts, wxCookie, keys, syncKey);
-        //    if (status)
-        //    {
-        //        timer.Stop();
-        //        HeartbeatWxStatus(httpResponse, wxHosts, wxCookie, keys, syncKey);
-        //    }
-        //}
-        ///// <summary>
-        ///// 登出
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        ///// <param name="httpResponse"></param>
-        //public static void Loginout(object sender, ElapsedEventArgs e,HttpResponse httpResponse)
-        //{
-        //    AuthCore.DeleteUin(httpResponse);
-        //}
+        /// <summary>
+        /// 心跳检测微信状态
+        /// </summary>
+        public static void HeartbeatWxStatus(HttpResponse httpResponse, string wxHosts, string wxCookie, PassTicketXmlInfo keys, SyncKey syncKey)
+        {
+            System.Timers.Timer timer = new System.Timers.Timer(60000);
+            timer.Elapsed += new ElapsedEventHandler((o, e) => Loginout(o, e, httpResponse));//登录超时
+            timer.Enabled = true;
+            timer.Start();
+            var status = WeiXinHelper.GetWxStatus(wxHosts, wxCookie, keys, syncKey);
+            if (status)
+            {
+                timer.Stop();
+                HeartbeatWxStatus(httpResponse, wxHosts, wxCookie, keys, syncKey);
+            }
+        }
+        /// <summary>
+        /// 登出
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="httpResponse"></param>
+        public static void Loginout(object sender, ElapsedEventArgs e, HttpResponse httpResponse)
+        {
+            AuthCore.DeleteUin(httpResponse);
+            throw new CustomerException(String.Format("当前登录状态消失 时间:{0}",DateTime.Now),-2);
+        }
 
         #endregion
         #endregion

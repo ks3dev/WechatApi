@@ -3,9 +3,6 @@ using Infrastructure.Core.Api;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WeiXin.Auth
 {

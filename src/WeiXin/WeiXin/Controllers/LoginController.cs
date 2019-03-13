@@ -39,10 +39,6 @@ namespace WeiXin.Controllers
         {
             string url = string.Empty;
             var status=WxLoginCore.LoginSuccess(_repository, _wxFriendsRepository, HttpContext.Response, _authcore, uuid,tip,ref url);
-            if (status == 200)
-            {
-                Commit();
-            }
             return Json(new { status, url });
         }
 
@@ -54,6 +50,7 @@ namespace WeiXin.Controllers
         public JsonResult Initialization(string url)
         {
             WxLoginCore.LoginInitialization(_repository, _wxFriendsRepository, Response, _authcore, url);
+            Commit();
             return Json();
         }
     }

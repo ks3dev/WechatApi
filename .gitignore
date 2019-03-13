@@ -9,3 +9,12 @@
 /src/WeiXin/Infrastructure.WeiXin/obj
 /src/WeiXin/WeiXin/obj
 /src/WeiXin/WeiXin/WeiXin.csproj.user
+/release
+/src/WeiXin/.vs/config
+/src/WeiXin/Infrastructure/bin/Release/netcoreapp2.0
+/src/WeiXin/Infrastructure.Core/bin/Release/netcoreapp2.0
+/src/WeiXin/Infrastructure.Redis/bin/Release/netcoreapp2.0
+/src/WeiXin/Infrastructure.WeiXin/bin/Release/netcoreapp2.0
+/src/WeiXin/WeiXin/bin
+/src/WeiXin/WeiXin/Logs
+/test/WeiXin

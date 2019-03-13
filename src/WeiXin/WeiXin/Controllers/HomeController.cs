@@ -46,7 +46,7 @@ namespace WeiXin.Controllers
         {
             var status = WeiXinHelper.SendMsg(UserHosts, sendMsg.Msg, sendMsg.FriendsName, UserName,UserKeys,WxCookie);
             return Json(status);
-        }
+        } 
         #endregion
 
         #region 设置备注

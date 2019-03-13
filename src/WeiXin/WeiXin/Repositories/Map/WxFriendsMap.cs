@@ -9,7 +9,7 @@ namespace WeiXin.Repositories.Map
     {
         public void Map(EntityTypeBuilder<WxFriends> builder)
         {
-            builder.ToTable("WxFriends");
+            builder.ToTable("wxfriends");
             builder.HasKey(t => t.Id);
             builder.Property(t => t.Id).ValueGeneratedOnAdd();
 

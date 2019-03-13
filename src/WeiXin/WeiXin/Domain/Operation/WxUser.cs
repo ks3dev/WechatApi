@@ -49,6 +49,8 @@ namespace WeiXin.Domain
             result.PYQuanPin = userModel.PYQuanPin;
             result.StarFriend = userModel.StarFriend;
             result.Sex = userModel.Sex;
+            result.UpdateTime = DateTime.Now;
+
             //设置keys
             result.Detail.WxKeys.Ret = keys.ret;
             result.Detail.WxKeys.Message = keys.message;

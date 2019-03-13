@@ -9,7 +9,7 @@ namespace WeiXin.Repositories.Map
     {
         public void Map(EntityTypeBuilder<WxUserDetails> builder)
         {
-            builder.ToTable("WxUserDetails");
+            builder.ToTable("wxuserdetails");
             builder.HasKey(t => t.Id);
             builder.Property(t => t.Id).ValueGeneratedOnAdd();
 

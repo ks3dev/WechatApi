@@ -24,6 +24,7 @@ namespace WeiXin.Auth
                 statusCode = -1;
                 msg = "系统繁忙，请稍后再试";
                 LogHelper.Error("未捕获的异常", ex.Message);
+                LogHelper.Error("异常详情", ex.ToString());
             }
             context.Result= new JsonResult(new ApiResult
             {

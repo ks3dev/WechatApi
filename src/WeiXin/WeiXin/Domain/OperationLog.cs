@@ -11,7 +11,7 @@ namespace WeiXin.Domain
     /// <summary>
     /// 操作日志
     /// </summary>
-    public class OperationLog: AggregateRoot
+    public partial class OperationLog: AggregateRoot
     {
         /// <summary>
         /// 操作IP

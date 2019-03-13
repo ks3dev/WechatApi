@@ -93,13 +93,13 @@ namespace WeiXin.Domain.DTO
         /// <summary>
         /// 省份
         /// </summary>
-        [MaxLength(8)]
+        [MaxLength(50)]
         public string Province { get; set; }
 
         /// <summary>
         /// 城市
         /// </summary>
-        [MaxLength(30)]
+        [MaxLength(80)]
         public string City { get; set; }
     }
 }

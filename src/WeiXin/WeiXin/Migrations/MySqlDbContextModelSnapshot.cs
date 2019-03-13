@@ -17,6 +17,47 @@ namespace WeiXin.Migrations
                 .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("WeiXin.Domain.OperationLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Action");
+
+                    b.Property<string>("Comment");
+
+                    b.Property<DateTime>("CreateTime");
+
+                    b.Property<string>("Ip")
+                        .IsRequired()
+                        .HasMaxLength(15);
+
+                    b.Property<string>("ObjectID")
+                        .HasMaxLength(15);
+
+                    b.Property<string>("ObjectType")
+                        .HasMaxLength(15);
+
+                    b.Property<string>("OperationData");
+
+                    b.Property<DateTime>("OperationTime");
+
+                    b.Property<string>("Product")
+                        .HasMaxLength(15);
+
+                    b.Property<string>("Project")
+                        .HasMaxLength(15);
+
+                    b.Property<string>("Telephone")
+                        .HasMaxLength(15);
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("operationlog");
+                });
+
             modelBuilder.Entity("WeiXin.Domain.WxFriends", b =>
                 {
                     b.Property<int>("Id")
@@ -25,7 +66,7 @@ namespace WeiXin.Migrations
                     b.Property<long>("AttrStatus");
 
                     b.Property<string>("City")
-                        .HasMaxLength(30);
+                        .HasMaxLength(80);
 
                     b.Property<long>("ContactFlag");
 
@@ -37,7 +78,7 @@ namespace WeiXin.Migrations
                         .HasMaxLength(500);
 
                     b.Property<string>("Province")
-                        .HasMaxLength(8);
+                        .HasMaxLength(50);
 
                     b.Property<string>("RemarkName")
                         .HasMaxLength(500);
@@ -65,7 +106,7 @@ namespace WeiXin.Migrations
 
                     b.HasIndex("UserUin");
 
-                    b.ToTable("WxFriends");
+                    b.ToTable("wxfriends");
                 });
 
             modelBuilder.Entity("WeiXin.Domain.WxUserDetails", b =>
@@ -85,7 +126,7 @@ namespace WeiXin.Migrations
                     b.HasIndex("UserUin")
                         .IsUnique();
 
-                    b.ToTable("WxUserDetails");
+                    b.ToTable("wxuserdetails");
                 });
 
             modelBuilder.Entity("WeiXin.Domain.WxUsers", b =>
@@ -118,7 +159,7 @@ namespace WeiXin.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WxUsers");
+                    b.ToTable("wxusers");
                 });
 
             modelBuilder.Entity("WeiXin.Domain.WxFriends", b =>

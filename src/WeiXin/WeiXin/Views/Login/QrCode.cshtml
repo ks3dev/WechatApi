@@ -1,0 +1,203 @@
+﻿@model WxLoginQrCodeDto
+@section Styles{
+    <title>用户中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        .m_header, .body-fixed-bottom, .fui-header {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .login_box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -155px;
+            margin-top: -270px;
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            background-color: #fff;
+            width: 310px;
+            height: 440px;
+            box-shadow: 0 2px 10px #999;
+            -moz-box-shadow: #999 0 2px 10px;
+            -webkit-box-shadow: #999 0 2px 10px;
+        }
+
+            .login_box .qrcode {
+                position: relative;
+                text-align: center;
+            }
+
+                .login_box .qrcode .img {
+                    display: block;
+                    width: 270px;
+                    height: 270px;
+                    margin: 42px auto 12px;
+                }
+
+                .login_box .qrcode .sub_title {
+                    text-align: center;
+                    font-size: 20px;
+                    color: #353535;
+                    margin-bottom: 20px;
+                }
+
+            .login_box .avatar, .login_box .loginsuccess, .login_box .sendsuccess, .login_box .senderror {
+                display: none;
+                text-align: center;
+                margin-top: 85px;
+            }
+
+                .login_box .avatar .img, .login_box .loginsuccess .img, .login_box .sendsuccess .img, .login_box .senderror .img {
+                    width: 160px;
+                    height: 160px;
+                    border-radius: 4px;
+                    -moz-border-radius: 4px;
+                    -webkit-border-radius: 4px;
+                    margin-bottom: 40px;
+                    border: 1px solid rgba(0,0,0,.1);
+                }
+
+                .login_box .sendsuccess .img, .login_box .senderror .img {
+                    border: 0px;
+                }
+
+                .login_box .avatar .sub_title, .login_box .loginsuccess .sub_title, .login_box .sendsuccess .sub_title, .login_box .senderror .sub_title {
+                    font-size: 20px;
+                    color: #353535;
+                    margin-bottom: 14px;
+                    font-weight: 400;
+                }
+
+        body {
+            font-family: Helvetica Neue,Helvetica,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,Arial,sans-serif;
+            background: url(//res.wx.qq.com/a/wx_fed/webwx/res/static/img/2zrdI1g.jpg) no-repeat 50%;
+            background-size: cover;
+        }
+
+        body, html {
+            height: 100%;
+        }
+
+        .refresh_tips {
+            display: none;
+        }
+
+        .login_box .qrcode .refresh_qrcode_mask {
+            height: 270px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.86);
+        }
+
+            .login_box .qrcode .refresh_qrcode_mask .icon-refresh {
+                cursor: pointer;
+                left: 50%;
+                margin-left: -48px;
+                margin-top: -48px;
+                position: absolute;
+                top: 50%;
+            }
+
+        .icon-broken-logo, .icon-refresh {
+            display: inline-block;
+            height: 96px;
+            vertical-align: middle;
+        }
+
+        .icon-refresh {
+            background: rgba(0, 0, 0, 0) url("//res.wx.qq.com/a/wx_fed/webwx/res/static/css/5af37c4a880a95586cd41c5b251d5562@1x.png") no-repeat scroll 0 -150px / 487px 462px;
+            width: 96px;
+        }
+    </style>
+}
+<div class="container member-page">
+    <div class="content" style="">
+        <div class="login_box">
+            <div class="qrcode">
+                <img class="img" src="@Model.WxQrCodeUrl" />
+                <div class="logintip">
+                    <p class="sub_title">
+                        使用手机微信扫码
+                    </p>
+                </div>
+                <div class="refresh_tips">
+                    <div class="refresh_qrcode_mask">
+                        <i class="icon-refresh" onclick="refreshQrcode()"></i>
+                    </div>
+                    <p>
+                        二维码失效，点击刷新
+                    </p>
+                </div>
+            </div>
+            <div class="avatar">
+                <img class="img" src="//res.wx.qq.com/a/wx_fed/webwx/res/static/img/2KriyDK.png">
+                <h4 class="sub_title">
+                    扫描成功
+                </h4>
+                <p class="tips">
+                    请在手机上点击确认以登录
+                </p>
+            </div>
+            <div class="loginsuccess">
+                <img class="img" src="//res.wx.qq.com/a/wx_fed/webwx/res/static/img/2KriyDK.png">
+                <h4 class="sub_title">
+                    登陆成功
+                </h4>
+                <p class="tips">
+                    正在初始化信息...
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/lib/layer/layer.js"></script>
+    <script>
+        $(function () {
+            loginSuccess();
+        });
+        function loginSuccess(tip=1) {
+            $.post("/login/loginsuccess", { uuid: '@Model.UUid',tip:tip }, function (ref) {
+                if (ref.response.status == 201) {
+                    loginSuccess(0);
+                    $(".avatar").children("img").attr("src", ref.response.url);
+                    $(".loginsuccess").children("img").attr("src", ref.response.url);
+                    $(".qrcode").hide();
+                    $(".avatar").show();
+                } else if (ref.response.status == 200) {
+                    $(".avatar").hide();
+                    $(".loginsuccess").show();
+                    Initialization(ref.response.url);
+                } else {
+                    layer.msg(ref.response, function () {
+                        location.reload();
+                    });
+                }
+            });
+        }
+        function Initialization(url) {
+            $.post("/login/Initialization", { url: url }, function (ref)
+            { 
+                if (ref.code == 200) {
+                    location.href = "/Home/Index";
+                } else {
+                    layer.msg(ref.response);
+                }
+            })
+        }
+    //login out
+        setTimeout(function () {
+            $(".logintip").hide();
+            $(".refresh_tips").show();
+        }, 600000);
+    //reload
+        function refreshQrcode() {
+            location.reload();
+        }
+    </script>
+}

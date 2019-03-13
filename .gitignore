@@ -3,3 +3,9 @@
 ################################################################################
 
 /src/WeiXin/.vs/WeiXin
+/src/WeiXin/Infrastructure/obj
+/src/WeiXin/Infrastructure.Core/obj
+/src/WeiXin/Infrastructure.Redis/obj
+/src/WeiXin/Infrastructure.WeiXin/obj
+/src/WeiXin/WeiXin/obj
+/src/WeiXin/WeiXin/WeiXin.csproj.user

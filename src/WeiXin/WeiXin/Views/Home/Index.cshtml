@@ -1,0 +1,218 @@
+﻿@model WxFriendsDto
+@section Styles{
+    <style>
+        .HiddenText {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 110px;
+            max-width: 200px;
+        }
+    </style>
+}
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#friends" data-toggle="tab">好友</a></li>
+        <li><a href="#groupchat" data-toggle="tab">群聊</a></li>
+        <li><a href="#publicaccount" data-toggle="tab">公众号</a></li>
+    </ul>
+<div class="row tab-content">
+    <div class="tab-pane active" id="friends">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>头像</th>
+                    <th>昵称</th>
+                    <th>备注</th>
+                    <th>手机号</th>
+                    <th>性别</th>
+                    <th>所在地</th>
+                    <th>签名</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Friends != null)
+                {
+                    foreach (var item in Model.Friends)
+                    {
+                <tr>
+                    <td><img src="https://wx2.qq.com/ @item.HeadImgUrl" /></td>
+                    <td class="HiddenText">@item.NickName</td>
+                    <td class="remarknametext">@item.RemarkName</td>
+                    <td class="telephonetext">@item.Telephone</td>
+                    <td>@(item.Sex == 1 ? "男" : "女")</td>
+                    <td>@(item.Province+item.City)</td>
+                    <td class="HiddenText">@item.Signature</td>
+                    <td>
+                        <a class="btn btn-primary" onclick="SendMsg('@item.UserName')">发消息</a>
+                        <a class="btn btn-primary" onclick="SetRemarkName('@item.UserName',this)">设置备注</a>
+                        <a class="btn btn-primary" onclick="BindTelephone('@item.UserName',this)">绑定手机号</a>
+                    </td>
+                </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="tab-pane" id="groupchat">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>昵称</th>
+                    <th>头像</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.GroupChat != null)
+                {
+                    foreach (var item in Model.GroupChat)
+                    {
+                        <tr>
+                            <td>@item.NickName</td>
+                            <td><img src="https://wx2.qq.com/ @item.HeadImgUrl" /></td>
+                            <td>
+                                <a class="btn btn-primary" onclick="SendMsg('@item.UserName')">发消息</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="tab-pane" id="publicaccount">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>昵称</th>
+                    <th>头像</th>
+                    <th>性别</th>
+                    <th>省份</th>
+                    <th>城市</th>
+                    <th>签名</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.PublicAccount != null)
+                {
+                    foreach (var item in Model.PublicAccount)
+                    {
+                        <tr>
+                            <td>@item.NickName</td>
+                            <td><img src="https://wx2.qq.com/ @item.HeadImgUrl" /></td>
+                            <td>@(item.Sex == 1 ? "男" : "女")</td>
+                            <td>@item.Province</td>
+                            <td>@item.City</td>
+                            <td class="HiddenText">@item.Signature</td>
+                            <td>
+                                <a class="btn btn-primary" onclick="SendMsg('@item.UserName')">发消息</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(function () { 
+            checkStatus();
+        })
+    </script>
+    <script src="~/lib/layer/layer.js"></script>
+    <script>
+        function SendMsg(userName) {
+            layer.open({
+                type: 1
+                , content: '<input class="form-control required msg" placeholder = "发送内容"/>'
+                , btn: ["发送", "取消"]
+                , yes: function (layero, index) {
+                    let param = {
+                        friendsname: userName,
+                        msg: $(".msg").val(),
+                    }
+                    $.post("/home/sendmsg", param, function (r) {
+
+                        if (r.code == 200) {
+                            layer.close(layer.index);
+                            layer.msg('发送成功');
+                        } else {
+                            layer.msg(r.response);
+                        }
+                    });
+                }
+            });
+
+        }
+
+        function BindTelephone(userName,that) {
+            layer.open({
+                type: 1
+                , content: '<input class="form-control required telephone" placeholder = "手机号"/>'
+                , btn: ["绑定", "取消"]
+                , yes: function (layero, index) {
+                    let param = {
+                        friendsname: userName,
+                        telephone: $(".telephone").val(),
+                    }
+                    $.post("/home/bindtelephone", param, function (r) {
+                        if (r.code == 200) {
+                            layer.close(layer.index);
+                            layer.msg('绑定成功');
+                            $(that).parent().siblings(".telephonetext").html(param.telephone);
+                        } else {
+                            layer.msg(r.response);
+                        }
+                    });
+                }
+            });
+        }
+
+        function SetRemarkName(userName,that) {
+            layer.open({
+                type: 1
+                , content: '<input class="form-control required remarkname" placeholder = "备注"/>'
+                , btn: ["绑定", "取消"]
+                , yes: function (layero, index) {
+                    let param = {
+                        friendsname: userName,
+                        remarkName: $(".remarkname").val(),
+                    }
+                    $.post("/home/setremarkname", param, function (r) {
+                        if (r.code == 200) {
+                            layer.close(layer.index);
+                            layer.msg('设置成功');
+                            $(that).parent().siblings(".remarknametext").html(param.remarkName);
+                        } else {
+                            layer.msg(r.response);
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function checkStatus() {
+            $.ajax({
+                url: "/Home/CheckStatus",
+                type:'POST',
+                async: true,
+                timeout:60000,
+                success: function (r) {
+                    if (r.code == -2 || !r.response) {
+                        location.href = "/Login/QrCode";
+                    } else {
+                        setTimeout(checkStatus,60000)
+                    }
+                },
+                error: function () { 
+                    location.href = "/Login/QrCode";
+                }
+            })
+
+        }
+    </script>
+}

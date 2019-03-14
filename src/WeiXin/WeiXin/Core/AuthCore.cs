@@ -182,7 +182,7 @@ namespace WeiXin.Core
             _redisHelper.SetHash(tablename, _synckeys_redis_key_, keysJson);
         }
         /// <summary>
-        /// 获取用户Cookie标识
+        /// 获取用户SyncKeys
         /// </summary>
         /// <param name="redisHelper"></param>
         /// <param name="userName"></param>

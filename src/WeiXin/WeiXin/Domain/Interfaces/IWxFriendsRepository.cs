@@ -6,6 +6,6 @@ namespace WeiXin.Domain.Interfaces
     public interface IWxFriendsRepository : IRepository<WxFriends>
     {
         WxFriends GetByName(string uin, string friendusername);
-        WxFriends GetFriendByTelephone(string telephone);
+        WxFriends GetFriendByName(string remarkName,string userUin);
     }
 }

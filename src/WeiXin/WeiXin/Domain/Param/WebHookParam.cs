@@ -70,9 +70,9 @@ namespace WeiXin.Domain.Param
         /// <summary>
         /// 接收人
         /// </summary>
-        [JsonProperty(PropertyName = "telephone")]
-        [Required(ErrorMessage ="接收人不得为空")]
-        [RegularExpression(@"^1[3458][0-9]{9}$", ErrorMessage = "手机号格式不正确")]
-        public string Telephone { get; set; }
+        //[JsonProperty(PropertyName = "telephone")]
+        //[Required(ErrorMessage ="接收人不得为空")]
+        //[RegularExpression(@"^1[3458][0-9]{9}$", ErrorMessage = "手机号格式不正确")]
+        //public string Telephone { get; set; }
     }
 }

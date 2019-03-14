@@ -21,9 +21,12 @@ namespace WeiXin.Repositories.Infrastructure
             return _dbContext.Set<WxFriends>().Where(m => m.UserName.Equals(friendusername) && m.UserUin.Equals(uin)).FirstOrDefault();
         }
 
-        public WxFriends GetFriendByTelephone(string telephone)
+        public WxFriends GetFriendByName(string name, string userUin)
         {
-            return _dbContext.Set<WxFriends>().Where(m => m.Telephone.Equals(telephone)).FirstOrDefault();
+            var db = _dbContext.Set<WxFriends>();
+            var friend= db.Where(m => m.RemarkName.Equals(name) && m.UserUin.Equals(userUin)).FirstOrDefault();
+            if (friend == null) friend = db.Where(m => m.NickName.Equals(name) && m.UserUin.Equals(userUin)).FirstOrDefault();
+            return friend;
         }
     }
 }

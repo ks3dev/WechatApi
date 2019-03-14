@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using WeiXin.Auth;
 using WeiXin.Core;
+using WeiXin.Core.Config;
 using WeiXin.Core.Interface;
 using WeiXin.Domain.Interfaces;
 using WeiXin.Repositories;
@@ -33,6 +34,7 @@ namespace WeiXin
         {
             services.Configure<RedisConfig>(Configuration.GetSection("RedisConfig"));
             services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
+            services.Configure<AppConfig>(Configuration.GetSection("AppConfig"));
 
             services.AddTransient<IRedisHelper, RedisHelper>();
             services.AddTransient<IAuthCore, AuthCore>();

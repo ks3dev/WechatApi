@@ -7,6 +7,6 @@ namespace WeiXin.Core.Config
 {
     public class AppConfig
     {
-        public string AesKey { get; set; }
+        public string UserUin { get; set; }
     }
 }

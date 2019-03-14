@@ -87,6 +87,7 @@ namespace WeiXin.Core
         public static void HeartbeatWxStatus(HttpResponse httpResponse, string wxHosts, string wxCookie, PassTicketXmlInfo keys, SyncKey syncKey)
         {
             var status = WeiXinHelper.GetWxStatus(wxHosts, wxCookie, keys, syncKey);
+            var wxnews = WeiXinHelper.GetNews(wxHosts,wxCookie,keys,syncKey);
             if (status)
             {
                 Thread.Sleep(20000);

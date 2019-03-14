@@ -1,0 +1,154 @@
+{
+    "BaseResponse": {
+        "Ret": 0,
+        "ErrMsg": ""
+    },
+    "AddMsgCount": 1,
+    "AddMsgList": [
+        {
+            "MsgId": "655493963724443173",
+            "FromUserName": "@90e175bcb3bc6bc7f6e71845744f2217b993a9fca2f3d23938ba904f453e2934",
+            "ToUserName": "@90e175bcb3bc6bc7f6e71845744f2217b993a9fca2f3d23938ba904f453e2934",
+            "MsgType": 51,
+            "Content": "",
+            "Status": 3,
+            "ImgStatus": 1,
+            "CreateTime": 1552525059,
+            "VoiceLength": 0,
+            "PlayLength": 0,
+            "FileName": "",
+            "FileSize": "",
+            "MediaId": "",
+            "Url": "",
+            "AppMsgType": 0,
+            "StatusNotifyCode": 4,
+            "StatusNotifyUserName": "@3102e74fd0de7b9c7980abdbc4c39a0f0a12afbda35f478b2b260b15b0893614,@@f34e6290fa26d051ac6ff6e4b24ac87d97a1489876bfcf028aebe3b9f5ccc623,filehelper,@521cefa00435496d157913ac9ded33ae,@5dacbd44394bc5a5afe539e5c221502e,@2c8d95f6f9bdb07f8fe6c39cf435256a,@1403a26c992cb43cde268a666a0bf62d,@0621014e51564e5807e5df882142b797,@097b29d52f6ec428fd6a830c592a8fdb,@71f2077b1f2b823568870d13d281001c2b7575cf6ba3e81f11f81c4a3b594080,@e0bee50db1404edf06d1565de8b92059,@8e3165692277c22b1fa7a0f7732342eab90c420a2d623341eadc777d49d216ac,@c2b98d0850e432d03dbf311cb290379c,@b9e9a9195dd6b55ac15dd05274fbc214,@73550ba0be42288570bca9dd5c93972ef04997cb04077404bcc9a5ea324eaf31,@@341c90b0e0a839986a66ede914a4cfe45e10a0617a76c33d63d18a634537b383,@333fc6a46df5d24a3da924986fed08ed,@@3d64b91526b6c4c82df5386793176e108fa22578e24c13c5c97e557d08369fb1,@34ea643a699a2a7427831b59ec9ac282,@713e807c489c8617ec71b433d2e6914c1010bafc4575ab9a155e31d71cc2c926,@026fe0bdecad8c098b365872ce5405fb35fd67f670e69c0830c8fe3130473440,@db680cb805d6831ab2a82afe500e75c5,@cc7bbf52b267cd81a0262679a9c0d1ed,@@bd542efb7dfbc4d89f4ebcc9965a031bf4f442fee070a4d1d95e3bd8c73fcd00,weixin,@24b19761ed05b2cc1144c893cd2ddba7,@2fcfd576999e5ce7f041639bf423ba63f617c26013e9e37c4363496918065b95,@@723401ce7401aab570b642f88152fddfc5b5c33bc682268fd8c6a8f350067398,@7a81f0b8138791df6cb9a0e77978c03503b743b9278f1869760313db6466ecda,@89968688561fd711506109f65274c46d11da05fd3bb045702b2f6bd5f5ee32e9,@a7a7b323708129b7f4e4657694566f87,@f8ae937f0e0a28e2e79800e405d81f15a8eb06fb7e169c9a34f5972d298fc498,@27f00019e66fd60d141114b1d95f0c8f50a6ac02ff3bbe9c87089fd4b9365706,@eb2ccd9a703365cf1c358186c4a2384e,@@0b00b9732b6f7c5921e609646f88057a2a69e7ee24f9d6ca636584ee323a799b,@@53068b0071384641fbe043e383daeab6c068821955fe4e8553716fb282788f51,@37da0e31990d204a7158e8dafbd2d775",
+            "RecommendInfo": {
+                "UserName": "",
+                "NickName": "",
+                "QQNum": 0,
+                "Province": "",
+                "City": "",
+                "Content": "",
+                "Signature": "",
+                "Alias": "",
+                "Scene": 0,
+                "VerifyFlag": 0,
+                "AttrStatus": 0,
+                "Sex": 0,
+                "Ticket": "",
+                "OpCode": 0
+            },
+            "ForwardFlag": 0,
+            "AppInfo": {
+                "AppID": "",
+                "Type": 0
+            },
+            "HasProductId": 0,
+            "Ticket": "",
+            "ImgHeight": 0,
+            "ImgWidth": 0,
+            "SubMsgType": 0,
+            "NewMsgId": 655493963724443173,
+            "OriContent": "",
+            "EncryFileName": ""
+        }
+    ],
+    "ModContactCount": 0,
+    "ModContactList": [],
+    "DelContactCount": 0,
+    "DelContactList": [],
+    "ModChatRoomMemberCount": 0,
+    "ModChatRoomMemberList": [],
+    "Profile": {
+        "BitFlag": 0,
+        "UserName": {
+            "Buff": ""
+        },
+        "NickName": {
+            "Buff": ""
+        },
+        "BindUin": 0,
+        "BindEmail": {
+            "Buff": ""
+        },
+        "BindMobile": {
+            "Buff": ""
+        },
+        "Status": 0,
+        "Sex": 0,
+        "PersonalCard": 0,
+        "Alias": "",
+        "HeadImgUpdateFlag": 0,
+        "HeadImgUrl": "",
+        "Signature": ""
+    },
+    "ContinueFlag": 0,
+    "SyncKey": {
+        "Count": 7,
+        "List": [
+            {
+                "Key": 1,
+                "Val": 676916702
+            },
+            {
+                "Key": 2,
+                "Val": 676916736
+            },
+            {
+                "Key": 3,
+                "Val": 676916726
+            },
+            {
+                "Key": 11,
+                "Val": 676915890
+            },
+            {
+                "Key": 201,
+                "Val": 1552525059
+            },
+            {
+                "Key": 1000,
+                "Val": 1552520042
+            },
+            {
+                "Key": 1001,
+                "Val": 1552520114
+            }
+        ]
+    },
+    "SKey": "",
+    "SyncCheckKey": {
+        "Count": 7,
+        "List": [
+            {
+                "Key": 1,
+                "Val": 676916702
+            },
+            {
+                "Key": 2,
+                "Val": 676916736
+            },
+            {
+                "Key": 3,
+                "Val": 676916726
+            },
+            {
+                "Key": 11,
+                "Val": 676915890
+            },
+            {
+                "Key": 201,
+                "Val": 1552525059
+            },
+            {
+                "Key": 1000,
+                "Val": 1552520042
+            },
+            {
+                "Key": 1001,
+                "Val": 1552520114
+            }
+        ]
+    }
+}

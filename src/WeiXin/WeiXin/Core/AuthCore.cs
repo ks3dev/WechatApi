@@ -34,7 +34,7 @@ namespace WeiXin.Core
         {
             var md5CookieKey = EncryptionHelper.MD5Encrypt(_userName_cookie_key_, Encoding.ASCII);
             var desUserName=EncryptionHelper.DESEncrypt(wxuin, _userName_cookie_key_);
-            httpResponse.Cookies.Append(md5CookieKey, desUserName);
+            httpResponse.Cookies.Append(md5CookieKey, desUserName,new CookieOptions { Expires=DateTime.Now.AddDays(999)});
         }
         /// <summary>
         /// 获取Uin

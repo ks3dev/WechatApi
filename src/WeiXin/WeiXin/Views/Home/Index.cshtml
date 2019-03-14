@@ -138,7 +138,7 @@
                             layer.close(layer.index);
                             layer.msg('发送成功');
                         } else {
-                            layer.msg(r.response);
+                            layer.msg("发送失败"+r.response);
                         }
                     });
                 }
@@ -162,7 +162,7 @@
                             layer.msg('绑定成功');
                             $(that).parent().siblings(".telephonetext").html(param.telephone);
                         } else {
-                            layer.msg(r.response);
+                            layer.msg("绑定失败"+r.response);
                         }
                     });
                 }
@@ -185,7 +185,7 @@
                             layer.msg('设置成功');
                             $(that).parent().siblings(".remarknametext").html(param.remarkName);
                         } else {
-                            layer.msg(r.response);
+                            layer.msg("设置失败"+r.response);
                         }
                     });
                 }

@@ -49,6 +49,10 @@ namespace Infrastructure.WeiXin
         //获取微信状态
         public static string WxStatus(string hosts) =>
             String.Format("https://webpush.{0}{1}", hosts, "/cgi-bin/mmwebwx-bin/synccheck");
+
+        //获取微信状态
+        public static string WxNews(string hosts, string sid, string skey) =>
+            String.Format("https://{0}{1}?sid={2}&skey={3}", hosts, "/cgi-bin/mmwebwx-bin/webwxsync", sid, skey);
         #endregion
 
         #region 获取Uid
@@ -282,6 +286,34 @@ namespace Infrastructure.WeiXin
             var statusJson = result.Replace("window.synccheck=", "");
             var status = JsonConvert.DeserializeObject<WxStatus>(statusJson);
             return status.RetCode.Equals("0");
+        }
+        #endregion
+
+        #region 获取新消息,延长Cookie时间
+        /// <summary>
+        /// 获取新消息,延长Cookie时间
+        /// </summary>
+        /// <param name="wxHosts"></param>
+        /// <param name="wxCookie"></param>
+        /// <param name="keys"></param>
+        /// <param name="syncKey"></param>
+        public static string GetNews(string wxHosts, string wxCookie, PassTicketXmlInfo keys, SyncKey syncKey)
+        {
+            var param = new
+            {
+                BaseRequest = new
+                {
+                    skey = keys.skey,
+                    sid = keys.wxsid,
+                    uin = keys.wxuin,
+                    deviceid = GetWxDeviceId(),
+                },
+                SyncKey= syncKey
+            };
+            var httpHelper = new HttpHelper(param, GetWxCookie(wxCookie));
+            var result = httpHelper.HttpPost(WxNews(wxHosts, keys.wxsid, keys.skey));
+            var setcookie = httpHelper.ReturnCookie;
+            return result;
         }
         #endregion
 
